@@ -5,17 +5,20 @@ using UnityEngine;
 public class TestRenderer : MonoBehaviour
 {
     [SerializeField] private Renderer _renderer;
-    [SerializeField] private float _offset;
-    [SerializeField] private float _tiling;
 
-    void Start()
+    void Awake()
     {
-        
+        _renderer = GetComponent<Renderer>();
     }
 
     void Update()
     {
-        _renderer.material.mainTextureOffset = new Vector2(_offset, 0);
-        _renderer.material.SetTextureScale("_MainTex", new Vector2(_tiling, 1));
+
+    }
+
+    public void TestFlipMaterial(float tiling, float offset)
+    {
+        _renderer.material.SetTextureScale("_MainTex", new Vector2(tiling, 1));
+        _renderer.material.mainTextureOffset = new Vector2(offset, 0);
     }
 }
