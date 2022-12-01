@@ -8,12 +8,14 @@ public class TestMovement2 : MonoBehaviour
     [SerializeField] private float _speed = 20;
     [SerializeField] private BoxCollider2D _boxCollider;
     private SpriteRenderer _renderer;
+    private Animator _animator;
 
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _renderer = GetComponent<SpriteRenderer>();
         _boxCollider = GetComponent<BoxCollider2D>();
+        _animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -24,10 +26,15 @@ public class TestMovement2 : MonoBehaviour
 
     private void Move()
     {
+        // Gets button pressed
         float moveX = Input.GetAxis("Horizontal");
-
         _rigidBody.velocity = new Vector2(moveX * _speed, _rigidBody.velocity.y);
 
+        // Activates animation
+        bool isWalking = (moveX != 0) ? true : false;
+        _animator.SetBool("isWalking", isWalking);
+
+        // Flips sprite
         if (moveX < 0)
         {
             _renderer.flipX = true;
@@ -45,6 +52,15 @@ public class TestMovement2 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() == true)
         {
             _rigidBody.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+            _animator.SetBool("isJumping", true);
+        }
+        else if (IsGrounded() == false)
+        {
+            _animator.SetBool("isJumping", true);
+        }
+        else
+        {
+            _animator.SetBool("isJumping", false);
         }
     }
 
