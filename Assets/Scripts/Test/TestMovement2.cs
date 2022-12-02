@@ -23,6 +23,9 @@ public class TestMovement2 : MonoBehaviour
         Move();
         Jump();
         MeleeSword();
+        AnimatorStateInfo currInfo = _animator.GetCurrentAnimatorStateInfo(0);
+        float lenght = currInfo.length;
+        Debug.Log(lenght);
     }
 
     private void Move()
@@ -31,9 +34,18 @@ public class TestMovement2 : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         _rigidBody.velocity = new Vector2(moveX * _speed, _rigidBody.velocity.y);
 
-        // Activates animation
-        bool isWalking = (moveX != 0) ? true : false;
-        _animator.SetBool("isWalking", isWalking);
+        //Change animation
+        if (IsGrounded() == true)
+        {
+            if (moveX != 0)
+            {
+                _animator.Play("Walk");
+            }
+            else
+            {
+                _animator.Play("Idle");
+            }
+        }
 
         // Flips sprite
         if (moveX < 0)
@@ -53,15 +65,11 @@ public class TestMovement2 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() == true)
         {
             _rigidBody.AddForce(Vector2.up * force, ForceMode2D.Impulse);
-            _animator.SetBool("isJumping", true);
         }
-        else if (IsGrounded() == false)
+
+        if ((Input.GetKeyDown(KeyCode.Space) && IsGrounded() == true) || IsGrounded() == false)
         {
-            _animator.SetBool("isJumping", true);
-        }
-        else
-        {
-            _animator.SetBool("isJumping", false);
+            _animator.Play("Jump_1");
         }
     }
 
@@ -74,9 +82,10 @@ public class TestMovement2 : MonoBehaviour
 
     private void MeleeSword()
     {
+        // With state machine
         if (Input.GetMouseButtonDown(0))
         {
-            _animator.SetTrigger("onSword");
+            //_animator.Play("Attack_Melee_Sword");
         }
     }
 
