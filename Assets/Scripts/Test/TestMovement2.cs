@@ -22,6 +22,7 @@ public class TestMovement2 : MonoBehaviour
     {
         Move();
         Jump();
+        MeleeSword();
     }
 
     private void Move()
@@ -69,6 +70,14 @@ public class TestMovement2 : MonoBehaviour
         LayerMask _groundLayer = LayerMask.GetMask("Ground");
         float distToGround = _boxCollider.bounds.extents.y;
         return Physics2D.Raycast(transform.position, Vector2.down, distToGround + 0.3f, _groundLayer);
+    }
+
+    private void MeleeSword()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            _animator.SetTrigger("onSword");
+        }
     }
 
     private void OnDrawGizmos()
