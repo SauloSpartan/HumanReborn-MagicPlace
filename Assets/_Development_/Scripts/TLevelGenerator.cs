@@ -8,11 +8,16 @@ public class TLevelGenerator : MonoBehaviour
 
     void Awake()
     {
-        Instantiate(levelPart, new Vector3(0, 0, 0), Quaternion.identity);
+        Vector3 spaceDistance = new Vector3(0, 0, 0);
+        for (int i = 0; i < 4; i++)
+        {
+            SpawnPosition(spaceDistance);
+            spaceDistance = new Vector3(spaceDistance.x + 4, 0, 0);
+        }
     }
 
-    void Update()
+    private void SpawnPosition(Vector3 spawnPosition)
     {
-        
+        Instantiate(levelPart, spawnPosition, Quaternion.identity);
     }
 }
