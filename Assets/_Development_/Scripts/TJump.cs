@@ -3,6 +3,7 @@ using UnityEngine;
 public class TJump : MonoBehaviour
 {
     private Rigidbody2D _rigidBody;
+    [SerializeField] float _force;
 
     void Start()
     {
@@ -11,10 +12,9 @@ public class TJump : MonoBehaviour
 
     void Update()
     {
-        float force = 5;
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _rigidBody.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+            _rigidBody.AddForce(Vector2.up * _force, ForceMode2D.Impulse);
         }
     }
 }
