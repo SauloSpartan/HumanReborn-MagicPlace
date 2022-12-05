@@ -21664,6 +21664,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _force: 8.5
+  _boxCollider: {fileID: 470441279}
+  _maxJumps: 2
+  _groundDistance: 0.2
 --- !u!114 &470441282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22448,7 +22451,7 @@ GameObject:
   - component: {fileID: 1229599092}
   - component: {fileID: 1229599094}
   - component: {fileID: 1229599093}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tilemap-Forest_Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}

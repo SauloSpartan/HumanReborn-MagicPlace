@@ -9,7 +9,7 @@ public class TestMovement2 : MonoBehaviour
     [SerializeField] private BoxCollider2D _boxCollider;
     private SpriteRenderer _renderer;
     private Animator _animator;
-
+    
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
@@ -62,7 +62,7 @@ public class TestMovement2 : MonoBehaviour
     {
         float force = 5;
 
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() == true)
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             _rigidBody.AddForce(Vector2.up * force, ForceMode2D.Impulse);
         }

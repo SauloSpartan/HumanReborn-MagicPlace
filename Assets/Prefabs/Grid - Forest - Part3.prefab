@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9043878020010223997}
   - component: {fileID: 9043878020010223996}
   - component: {fileID: 9043878020010223999}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tilemap-Forest_Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
