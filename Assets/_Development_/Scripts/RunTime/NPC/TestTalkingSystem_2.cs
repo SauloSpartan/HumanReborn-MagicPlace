@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class TestTalkingSystem_2 : MonoBehaviour
 {
@@ -7,12 +8,16 @@ public class TestTalkingSystem_2 : MonoBehaviour
     [SerializeField] private float _talkingDistance;
     private BoxCollider2D _boxCollider;
     private BoxCollider2D _playerCollider;
+    private TMP_Text _text;
+    private bool _isTalking;
 
     void Awake()
     {
         _spriteButton.enabled = false;
         _boxCollider = GetComponent<BoxCollider2D>();
         _playerCollider = _player.GetComponent<BoxCollider2D>();
+        _text = GetComponentInChildren<TMP_Text>();
+        _text.enabled = false;
 
         Physics2D.IgnoreCollision(_boxCollider, _playerCollider);
     }
@@ -20,13 +25,35 @@ public class TestTalkingSystem_2 : MonoBehaviour
     void Update()
     {
         float distance = Vector2.Distance(_player.position, transform.position);
-        if (distance < _talkingDistance) 
+        if (_isTalking == false)
         {
-            _spriteButton.enabled = true;
+            if (distance < _talkingDistance)
+            {
+                _spriteButton.enabled = true;
+
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    _isTalking = true;
+                }
+            }
+            else
+            {
+                _spriteButton.enabled = false;
+            }
         }
-        else
+        else if (_isTalking == true)
         {
             _spriteButton.enabled = false;
+
+            if (distance < _talkingDistance)
+            {
+                _text.enabled = true;
+            }
+            else
+            {
+                _text.enabled = false;
+                _isTalking = false;
+            }
         }
     }
 
