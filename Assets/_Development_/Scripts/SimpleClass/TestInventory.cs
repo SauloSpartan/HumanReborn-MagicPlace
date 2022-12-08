@@ -9,8 +9,8 @@ public class TestInventory
     {
         _itemList = new List<TestItem>();
 
-        AddItem(new TestItem { TypeItem = TestItem.ItemType.Rock, amount = 1 });
         AddItem(new TestItem { TypeItem = TestItem.ItemType.Wood, amount = 1 });
+        AddItem(new TestItem { TypeItem = TestItem.ItemType.Rock, amount = 1 });
         AddItem(new TestItem { TypeItem = TestItem.ItemType.Iron, amount = 1 });
     }
 

@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TestUI_Inventory : MonoBehaviour
 {
@@ -32,6 +31,9 @@ public class TestUI_Inventory : MonoBehaviour
             RectTransform itemSlotRectTransform = Instantiate(_itemSlotTemplate, _itemSlotContainer).GetComponent<RectTransform>();
             itemSlotRectTransform.gameObject.SetActive(true);
             itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSize, y * itemSlotCellSize);
+
+            Image image = itemSlotRectTransform.Find("Image").GetComponent<Image>();
+            image.sprite = item.GetSprite();
             x++;
             if (x > 3)
             {
