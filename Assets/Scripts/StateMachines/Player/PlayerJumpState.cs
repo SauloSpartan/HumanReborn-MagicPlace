@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdleState : PlayerBaseState
+public class PlayerJumpState : PlayerBaseState
 {
-    public PlayerIdleState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactor) : base (currentContext, playerStateFactor)
+    public PlayerJumpState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactor) : base(currentContext, playerStateFactor)
     {
 
     }
 
     public override void EnterState()
     {
-        _ctx.Animator.Play("Idle");
+
     }
 
     public override void UpdateState()
@@ -26,9 +26,6 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void CheckSwitchState()
     {
-        if (_ctx.MoveX != 0)
-        {
-            SwitchState(_factory.Walk());
-        }
+
     }
 }

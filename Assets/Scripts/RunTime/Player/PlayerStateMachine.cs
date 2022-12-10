@@ -18,6 +18,8 @@ public class PlayerStateMachine : MonoBehaviour
     // Getters and Setters
     /// <value> Reference to BaseState Script. </value>
     public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
+    public Rigidbody2D RigidBody { get { return _rigidBody; } set { _rigidBody = value; }}
+    public float Speed { get { return _speed; } } 
     public float MoveX { get { return _moveX; } set { _moveX = value; } }
     public Animator Animator { get { return _animator; } set { _animator = value; } }
 
@@ -39,10 +41,13 @@ public class PlayerStateMachine : MonoBehaviour
     {
         // Setup state
         _currentState.UpdateState();
+
+        // Other functions
+        GetInput();
     }
 
-    public void Movement()
+    private void GetInput() 
     {
-        _rigidBody.velocity = new Vector2(_moveX * _speed, _rigidBody.velocity.y);
+        _moveX = Input.GetAxis("Horizontal");
     }
 }

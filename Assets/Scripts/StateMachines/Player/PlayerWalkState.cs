@@ -12,12 +12,12 @@ public class PlayerWalkState : PlayerBaseState
     public override void EnterState()
     {
         _ctx.Animator.Play("Walk");
-        Debug.Log("Hello from Walk");
     }
 
     public override void UpdateState()
     {
-
+        _ctx.RigidBody.velocity = new Vector2(_ctx.MoveX * _ctx.Speed, _ctx.RigidBody.velocity.y);
+        CheckSwitchState();
     }
 
     public override void ExitState()
@@ -27,6 +27,9 @@ public class PlayerWalkState : PlayerBaseState
 
     public override void CheckSwitchState()
     {
-
+        if (_ctx.MoveX == 0)
+        {
+            SwitchState(_factory.Idle());
+        }
     }
 }
