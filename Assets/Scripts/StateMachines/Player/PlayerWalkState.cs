@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerWalkState : PlayerBaseState
 {
+
     public PlayerWalkState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactor) : base(currentContext, playerStateFactor)
     {
 
@@ -15,7 +16,7 @@ public class PlayerWalkState : PlayerBaseState
     }
 
     public override void UpdateState()
-    {
+    {   
         _ctx.RigidBody.velocity = new Vector2(_ctx.MoveX * _ctx.Speed, _ctx.RigidBody.velocity.y);
         CheckSwitchState();
     }
@@ -31,5 +32,10 @@ public class PlayerWalkState : PlayerBaseState
         {
             SwitchState(_factory.Idle());
         }
+        else if (_ctx.Jump == true)
+        {
+            SwitchState(_factory.Jump());
+        }
+
     }
 }

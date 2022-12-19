@@ -30,5 +30,9 @@ public class PlayerIdleState : PlayerBaseState
         {
             SwitchState(_factory.Walk());
         }
+        else if (_ctx.Jump == true)
+        {
+            SwitchState(_factory.Jump());
+        }
     }
 }
