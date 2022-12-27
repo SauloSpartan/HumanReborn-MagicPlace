@@ -5,12 +5,24 @@ using TreeEditor;
 
 public class TInventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [SerializeField] private Image _item;
+    [SerializeField] private ItemData _item;
+    private Image _image;
     [HideInInspector] public Transform InitialParent;
+
+    void Start()
+    {
+        _image = GetComponent<Image>();
+        InitialiseItem(_item);
+    }
+
+    private void InitialiseItem(ItemData newItem)
+    {
+        _image.sprite = newItem.ItemSprite;
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        _item.raycastTarget = false;
+        _image.raycastTarget = false;
         InitialParent = transform.parent;
         transform.SetParent(transform.root);
     }
@@ -22,7 +34,7 @@ public class TInventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        _item.raycastTarget = true;
+        _image.raycastTarget = true;
         transform.SetParent(InitialParent);
     }
 }
