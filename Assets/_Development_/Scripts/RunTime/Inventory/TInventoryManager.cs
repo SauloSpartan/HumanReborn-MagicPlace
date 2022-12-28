@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// On "InventoryManager", manages to add items in your inventory.
 public class TInventoryManager : MonoBehaviour
 {
     [SerializeField] private TInventorySlot[] _inventorySlots;
@@ -9,6 +8,19 @@ public class TInventoryManager : MonoBehaviour
 
     public bool AddItem(ItemData item)
     {
+        // Check for same item in slot with count lower than max
+        for (int i = 0; i < _inventorySlots.Length; i++)
+        {
+            TInventorySlot slot = _inventorySlots[i];
+            TInventoryItem itemInSlot = slot.GetComponentInChildren<TInventoryItem>();
+            if (itemInSlot != null && itemInSlot.Item == item && itemInSlot.Count < 5 && itemInSlot.Item.IsStackable == true)
+            {
+                itemInSlot.Count++;
+                itemInSlot.RefreshCount(true);
+                return true;
+            }
+        }
+
         // Find any empty slot
         for (int i = 0; i < _inventorySlots.Length; i++)
         {
