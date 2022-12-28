@@ -9,14 +9,14 @@ public class TInventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     private Image _image;
     [HideInInspector] public Transform InitialParent;
 
-    void Start()
+    void Awake()
     {
         _image = GetComponent<Image>();
-        InitialiseItem(_item);
     }
 
-    private void InitialiseItem(ItemData newItem)
+    public void InitialiseItem(ItemData newItem)
     {
+        _item = newItem;
         _image.sprite = newItem.ItemSprite;
     }
 
