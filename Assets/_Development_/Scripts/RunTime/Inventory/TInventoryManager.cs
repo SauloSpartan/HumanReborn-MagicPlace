@@ -6,6 +6,36 @@ public class TInventoryManager : MonoBehaviour
     [SerializeField] private TInventorySlot[] _inventorySlots;
     [SerializeField] private GameObject _itemPrefab;
 
+    private int _selectedSlot = -1;
+
+    void Start()
+    {
+        ChangeSelectedSlot(0);
+    }
+
+    void Update()
+    {
+        if (Input.inputString != null)
+        {
+            bool isNumber = int.TryParse(Input.inputString, out int number);
+            if (isNumber && number > 0 && number < 6)
+            {
+                ChangeSelectedSlot(number - 1);
+            }
+        }
+    }
+
+    private void ChangeSelectedSlot(int newValue)
+    {
+        if (_selectedSlot >= 0)
+        {
+            _inventorySlots[_selectedSlot].Deselect();
+        }
+
+        _inventorySlots[newValue].Select();
+        _selectedSlot = newValue;
+    }
+
     public bool AddItem(ItemData item)
     {
         // Check for same item in slot with count lower than max
