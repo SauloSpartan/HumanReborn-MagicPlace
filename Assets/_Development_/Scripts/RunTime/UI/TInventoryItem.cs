@@ -12,12 +12,6 @@ public class TInventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     [HideInInspector] public Transform InitialParent;
     [HideInInspector] public int Count = 1;
 
-    void Awake()
-    {
-        _image = GetComponent<Image>();
-        _countText = GetComponentInChildren<TextMeshProUGUI>();
-    }
-
     public void InitialiseItem(ItemData newItem)
     {
         Item = newItem;
@@ -54,6 +48,12 @@ public class TInventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = Input.mousePosition;
+
+        // Bug Fix not moving
+        if (Item.IsStackable == true)
+        {
+            _countText.enabled = false; 
+        }
     }
 
     /// <summary>
@@ -64,5 +64,11 @@ public class TInventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
     {
         _image.raycastTarget = true;
         transform.SetParent(InitialParent);
+
+        // Bug Fix not moving
+        if (Item.IsStackable == true)
+        {
+            _countText.enabled = true;
+        }
     }
 }

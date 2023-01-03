@@ -29,6 +29,10 @@ public class TInventorySlot : MonoBehaviour, IDropHandler
         _image.color = notSelectedColor;
     }
 
+    /// <summary>
+    /// Interface implementation of Unity begin drag handler.
+    /// </summary>
+    /// <param name="eventData"> Receives a PointerEventData parameter.</param>
     public void OnDrop(PointerEventData eventData)
     {
         if (transform.childCount == 0)

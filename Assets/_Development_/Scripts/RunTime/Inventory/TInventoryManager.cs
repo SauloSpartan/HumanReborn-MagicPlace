@@ -15,6 +15,14 @@ public class TInventoryManager : MonoBehaviour
 
     void Update()
     {
+        GetNumberInput();
+    }
+
+    /// <summary>
+    /// Gets the inputs of numbers to select an inventory slot.
+    /// </summary>
+    private void GetNumberInput()
+    {
         if (Input.inputString != null)
         {
             bool isNumber = int.TryParse(Input.inputString, out int number);
@@ -25,6 +33,10 @@ public class TInventoryManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Moves the selected slot to a new one.
+    /// </summary>
+    /// <param name="newValue"> Gets an int for the value of the slot selected.</param>
     private void ChangeSelectedSlot(int newValue)
     {
         if (_selectedSlot >= 0)
@@ -36,29 +48,30 @@ public class TInventoryManager : MonoBehaviour
         _selectedSlot = newValue;
     }
 
+    /// <summary>
+    /// Adds and moves items when picked up or drag and droped.
+    /// </summary>
+    /// <param name="item"> Receives and ItemData parameter to work with.</param>
+    /// <returns> Returns true if you had space on the inventory to add an item and false if not.</returns>
     public bool AddItem(ItemData item)
     {
-        // Check for same item in slot with count lower than max
         for (int i = 0; i < _inventorySlots.Length; i++)
         {
             TInventorySlot slot = _inventorySlots[i];
             TInventoryItem itemInSlot = slot.GetComponentInChildren<TInventoryItem>();
-            if (itemInSlot != null && itemInSlot.Item == item && itemInSlot.Count < 5 && itemInSlot.Item.IsStackable == true)
-            {
-                itemInSlot.Count++;
-                itemInSlot.RefreshCount(true);
-                return true;
-            }
-        }
 
-        // Find any empty slot
-        for (int i = 0; i < _inventorySlots.Length; i++)
-        {
-            TInventorySlot slot = _inventorySlots[i];
-            TInventoryItem itemInSlot = slot.GetComponentInChildren<TInventoryItem>();
+            // Find any empty slot
             if (itemInSlot == null)
             {
                 ShowOnInventory(item, slot);
+                return true;
+            }
+
+            // Check for same item in slot with count lower than max
+            else if (itemInSlot != null && itemInSlot.Item == item && itemInSlot.Count < 5 && itemInSlot.Item.IsStackable == true)
+            {
+                itemInSlot.Count++;
+                itemInSlot.RefreshCount(true);
                 return true;
             }
         }
