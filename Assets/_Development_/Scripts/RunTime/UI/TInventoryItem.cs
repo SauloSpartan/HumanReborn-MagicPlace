@@ -6,7 +6,7 @@ using TMPro;
 // On "InventoryItem", manages the visuals and code for items on inventory with Unity Interfaces.
 public class TInventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    private Image _image;
+    [SerializeField] private Image _image;
     [SerializeField] private TextMeshProUGUI _countText;
     public ItemData Item;
     [HideInInspector] public Transform InitialParent;
@@ -25,20 +25,21 @@ public class TInventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         RefreshCount(Item.IsStackable);
     }
 
+    /// <summary>
+    /// Refresh the item stack count if is stackable.
+    /// </summary>
+    /// <param name="stackable"> Receives a bool if stackable.</param>
     public void RefreshCount(bool stackable)
     {
-        if (stackable == true)
-        {
-            _countText.enabled = true;
-        }
-        else
-        {
-            _countText.enabled = false;
-        }
+        bool isStackable = stackable ? _countText.enabled = true : _countText.enabled = false; // Ternary Conditional Operator
 
-        _countText.text = Count.ToString();
+        _countText.text = Count.ToString(); // Refresh the count and converts it to string.
     }
 
+    /// <summary>
+    /// Interface implementation of Unity begin drag handler.
+    /// </summary>
+    /// <param name="eventData"> Receives a PointerEventData parameter.</param>
     public void OnBeginDrag(PointerEventData eventData)
     {
         _image.raycastTarget = false;
@@ -46,11 +47,19 @@ public class TInventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IE
         transform.SetParent(transform.root);
     }
 
+    /// <summary>
+    /// Interface implementation of Unity drag handler.
+    /// </summary>
+    /// <param name="eventData"> Receives a PointerEventData parameter.</param>
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = Input.mousePosition;
     }
 
+    /// <summary>
+    /// Interface implementation of Unity end drag handler.
+    /// </summary>
+    /// <param name="eventData"> Receives a PointerEventData parameter.</param>
     public void OnEndDrag(PointerEventData eventData)
     {
         _image.raycastTarget = true;
