@@ -21,6 +21,11 @@ public class TestWander : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
+    void Start()
+    {
+        StartCoroutine(WanderAround());
+    }
+
     void Update()
     {
         _rigidBody.velocity = new Vector2(_direction * _speed, _rigidBody.velocity.y);
@@ -44,5 +49,17 @@ public class TestWander : MonoBehaviour
         }
 
         //float distance = Mathf.Abs((transform.position.x - _origin.x));
+    }
+
+    private IEnumerator WanderAround()
+    {
+        while (true) 
+        {
+            int randomDirection = Random.Range(-1, 2);
+
+            _direction = randomDirection;
+
+            yield return new WaitForSecondsRealtime(2f);
+        }
     }
 }
