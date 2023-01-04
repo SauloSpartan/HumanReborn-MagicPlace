@@ -14,7 +14,7 @@ public class TInventorySlot : MonoBehaviour, IDropHandler
     {
         _image = GetComponent<Image>();
         selectedColor = Color.red;
-        notSelectedColor = Color.white;
+        notSelectedColor = Color.black;
 
         Deselect();
     }
