@@ -17,7 +17,8 @@ public class PlayerWalkState : PlayerBaseState
 
     public override void UpdateState()
     {   
-        _ctx.RigidBody.velocity = new Vector2(_ctx.MoveX * _ctx.Speed, _ctx.RigidBody.velocity.y);
+        _ctx.RigidBody.velocity = new Vector2(_ctx.MoveInX * _ctx.Speed, _ctx.RigidBody.velocity.y);
+
         CheckSwitchState();
     }
 
@@ -28,14 +29,13 @@ public class PlayerWalkState : PlayerBaseState
 
     public override void CheckSwitchState()
     {
-        if (_ctx.MoveX == 0)
+        if (_ctx.MoveInX == 0)
         {
             SwitchState(_factory.Idle());
         }
-        else if (_ctx.Jump == true)
+        else if (_ctx.JumpKey == true && _ctx.IsGrounded() == true)
         {
             SwitchState(_factory.Jump());
         }
-
     }
 }

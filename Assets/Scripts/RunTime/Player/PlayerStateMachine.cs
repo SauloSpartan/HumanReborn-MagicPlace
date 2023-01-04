@@ -5,10 +5,16 @@ public class PlayerStateMachine : MonoBehaviour
 {
     // Movement variables
     private Rigidbody2D _rigidBody;
+    [SerializeField] private BoxCollider2D _boxCollider;
     [SerializeField] private float _speed = 5;
-    private float _moveX;
-    private bool _jump;
+    private float _moveInX;
+
+    // Jump variables
+    private bool _jumpKey;
     [SerializeField] private float _jumpForce = 2;
+    [SerializeField] private int _maxJumps;
+    private int _remainJumps;
+    [SerializeField] private float _groundDistance;
 
     // Animation variables
     private Animator _animator;
@@ -23,14 +29,16 @@ public class PlayerStateMachine : MonoBehaviour
     public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
     public Rigidbody2D RigidBody { get { return _rigidBody; } set { _rigidBody = value; }}
     public float Speed { get { return _speed; } } 
-    public float MoveX { get { return _moveX; } set { _moveX = value; } }
-    public bool Jump { get { return _jump; } set { _jump = value; } }
+    public float MoveInX { get { return _moveInX; } set { _moveInX = value; } }
+    public bool JumpKey { get { return _jumpKey; } set { _jumpKey = value; } }
     public float JumpForce { get { return _jumpForce; } }
+    public int RemainJumps { get { return _remainJumps; } set { _remainJumps = value; } }
     public Animator Animator { get { return _animator; } set { _animator = value; } }
 
     void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
+        _boxCollider = GetComponent<BoxCollider2D>();
         _animator = GetComponent<Animator>();
         _sprite = GetComponent<SpriteRenderer>();
     }
@@ -49,26 +57,49 @@ public class PlayerStateMachine : MonoBehaviour
         _currentState.UpdateState();
 
         // Other functions
-        GetInput();
+        GetInputs();
+        ResetJumpsCount();
     }
 
     /// <summary>
-    /// Get the inputs for Movement in X.
+    /// Get the inputs of any key needed.
     /// </summary>
-    private void GetInput() 
+    private void GetInputs() 
     {
         // Movement in X inputs
-        _moveX = Input.GetAxis("Horizontal");
-        if (_moveX < 0)
+        _moveInX = Input.GetAxis("Horizontal");
+        if (_moveInX < 0)
         {
             _sprite.flipX = true;
         }
-        else if (_moveX > 0)
+        else if (_moveInX > 0)
         {
             _sprite.flipX = false;
         }
 
         //Jump inputs
-        _jump = Input.GetKeyDown(KeyCode.Space);
+        _jumpKey = Input.GetKeyDown(KeyCode.Space);
+    }
+
+    public bool IsGrounded()
+    {
+        LayerMask _groundLayer = LayerMask.GetMask("Ground");
+        float distanceToGround = _boxCollider.bounds.extents.y;
+        return Physics2D.Raycast(transform.position, Vector2.down, distanceToGround + _groundDistance, _groundLayer);
+    }
+
+    private void ResetJumpsCount()
+    {
+        if (IsGrounded())
+        {
+            _remainJumps = _maxJumps;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        float distanceToGround = _boxCollider.bounds.extents.y;
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(transform.position, Vector2.down * (distanceToGround + _groundDistance));
     }
 }

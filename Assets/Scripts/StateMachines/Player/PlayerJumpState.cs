@@ -12,8 +12,7 @@ public class PlayerJumpState : PlayerBaseState
     public override void EnterState()
     {
         _ctx.Animator.Play("Jump_1");
-        Debug.Log("Salto");
-        
+        _ctx.RemainJumps--;
         _ctx.RigidBody.velocity = new Vector2(_ctx.RigidBody.velocity.x, 0);
         _ctx.RigidBody.AddForce(Vector2.up * _ctx.JumpForce, ForceMode2D.Impulse);
     }
@@ -30,7 +29,7 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void CheckSwitchState()
     {
-        if (_ctx.Jump == false) 
+        if (_ctx.JumpKey == false || _ctx.IsGrounded() == true) 
         {
             SwitchState(_factory.Idle());
         }

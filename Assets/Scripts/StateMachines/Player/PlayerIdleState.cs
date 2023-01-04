@@ -26,11 +26,11 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void CheckSwitchState()
     {
-        if (_ctx.MoveX != 0)
+        if (_ctx.MoveInX != 0)
         {
             SwitchState(_factory.Walk());
         }
-        else if (_ctx.Jump == true)
+        else if (_ctx.JumpKey == true && _ctx.IsGrounded() == true)
         {
             SwitchState(_factory.Jump());
         }
