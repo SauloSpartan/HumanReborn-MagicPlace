@@ -12,8 +12,6 @@ public class PlayerStateMachine : MonoBehaviour
     // Jump variables
     private bool _jumpKey;
     [SerializeField] private float _jumpForce = 2;
-    [SerializeField] private int _maxJumps;
-    private int _remainJumps;
     [SerializeField] private float _groundDistance;
 
     // Animation variables
@@ -32,7 +30,6 @@ public class PlayerStateMachine : MonoBehaviour
     public float MoveInX { get { return _moveInX; } set { _moveInX = value; } }
     public bool JumpKey { get { return _jumpKey; } set { _jumpKey = value; } }
     public float JumpForce { get { return _jumpForce; } }
-    public int RemainJumps { get { return _remainJumps; } set { _remainJumps = value; } }
     public Animator Animator { get { return _animator; } set { _animator = value; } }
 
     void Awake()
@@ -58,7 +55,6 @@ public class PlayerStateMachine : MonoBehaviour
 
         // Other functions
         GetInputs();
-        ResetJumpsCount();
     }
 
     /// <summary>
@@ -86,14 +82,6 @@ public class PlayerStateMachine : MonoBehaviour
         LayerMask _groundLayer = LayerMask.GetMask("Ground");
         float distanceToGround = _boxCollider.bounds.extents.y;
         return Physics2D.Raycast(transform.position, Vector2.down, distanceToGround + _groundDistance, _groundLayer);
-    }
-
-    private void ResetJumpsCount()
-    {
-        if (IsGrounded())
-        {
-            _remainJumps = _maxJumps;
-        }
     }
 
     private void OnDrawGizmos()

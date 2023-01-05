@@ -12,7 +12,6 @@ public class PlayerJumpState : PlayerBaseState
     public override void EnterState()
     {
         _ctx.Animator.Play("Jump_1");
-        _ctx.RemainJumps--;
         _ctx.RigidBody.velocity = new Vector2(_ctx.RigidBody.velocity.x, 0);
         _ctx.RigidBody.AddForce(Vector2.up * _ctx.JumpForce, ForceMode2D.Impulse);
     }
