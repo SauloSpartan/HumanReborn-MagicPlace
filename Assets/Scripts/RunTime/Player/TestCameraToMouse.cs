@@ -7,8 +7,7 @@ public class TestCameraToMouse : MonoBehaviour
 
     private Vector2 _mouseScreenPosition;
     private Vector2 _mean;
-    private float _positionX;
-    private float _positionY;
+    private float _transition;
 
 
     void Start()
@@ -28,11 +27,10 @@ public class TestCameraToMouse : MonoBehaviour
     void AverageToMouse()
     {
         _mouseScreenPosition = _camera.ScreenToWorldPoint(Input.mousePosition);
-        _positionX = ((_player.transform.position.x + _mouseScreenPosition.x) / 2f) * 0.9115f;
-        _positionY = ((_player.transform.position.y + _mouseScreenPosition.y) / 2f) * 0.85f;
+        _transition = 4f * Time.deltaTime;
 
-        _mean = new Vector2(_positionX, _positionY);
-        
+        _mean = new Vector2(Mathf.Lerp(transform.position.x, (((_player.transform.position.x + _mouseScreenPosition.x) / 2f) * 0.9115f), _transition), Mathf.Lerp(transform.position.y, (((_player.transform.position.y + _mouseScreenPosition.y) / 2f) * 0.85f), _transition));
+
         transform.position = _mean;
     }
 }
