@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class TestEnemySystem : MonoBehaviour
+public class TestOrbSystem : MonoBehaviour
 {
-    public float XpAmount;
+    public float XpAmount = 0;
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {

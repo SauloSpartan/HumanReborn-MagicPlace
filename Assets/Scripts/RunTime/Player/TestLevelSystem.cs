@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,6 +38,6 @@ public class TestLevelSystem : MonoBehaviour
         if (!collision.CompareTag("XpOrb"))
             return;
 
-        _xpActual += collision.GetComponent<TestEnemySystem>().XpAmount;
+        _xpActual += collision.GetComponent<TestOrbSystem>().XpAmount;
     }
 }
