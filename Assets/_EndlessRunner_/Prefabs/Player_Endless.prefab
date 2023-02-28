@@ -154,8 +154,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f94cd30885a034abf09003f5f4dcb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _walkSpeed: 2
   _jumForce: 6
-  _movementSpeed: 2
   _raycastDistance: 1.5
   _groundMask:
     serializedVersion: 2
