@@ -13,19 +13,13 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
 
+    public int CollectedObject;
+
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-        }
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab) && CurrentState != GameState.inGame)
-        {
-            StartGame();
         }
     }
 
@@ -48,19 +42,28 @@ public class GameManager : MonoBehaviour
     {
         if (newGameState == GameState.menu)
         {
-
+            MenuManager.Instance.ShowMainMenu();
+            MenuManager.Instance.HideGameMenu();
         }
         else if (newGameState == GameState.inGame)
         {
             LevelManager.Instance.RemoveAllLevelBlocks();
             LevelManager.Instance.GenerateInitialBlocks();
             PlayerController.Instance.StartGame();
+            MenuManager.Instance.HideMainMenu();
+            MenuManager.Instance.ShowGameMenu();
         }
         else if (newGameState == GameState.gameOver)
         {
-
+            MenuManager.Instance.ShowMainMenu();
+            MenuManager.Instance.HideGameMenu();
         }
 
         CurrentState = newGameState;
+    }
+
+    public void CollectObject(Collectable collectable)
+    {
+        CollectedObject += collectable.Value;
     }
 }

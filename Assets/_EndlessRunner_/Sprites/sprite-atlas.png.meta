@@ -1,7 +1,10 @@
 fileFormatVersion: 2
 guid: d911f18a2b9627e4a8069530aa0b45b9
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 6277152026664103443
+    second: sprite-atlas_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -822,6 +825,27 @@ TextureImporter:
       bones: []
       spriteID: b407690863cdc6a60800000000000000
       internalID: 7668746392148799563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite-atlas_0
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 2386
+        width: 157
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31eef6ea28cec1750800000000000000
+      internalID: 6277152026664103443
       vertices: []
       indices: 
       edges: []
