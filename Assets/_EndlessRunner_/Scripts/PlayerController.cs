@@ -60,6 +60,9 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool(State_Alive, true);
         _animator.SetBool(State_Grounded, true);
         transform.position = _startPosition;
+
+        GameObject mainCamera = GameObject.Find("Main Camera");
+        mainCamera.GetComponent<CameraFollow>().ResetCameraPosition();
     }
 
     private void Jump()

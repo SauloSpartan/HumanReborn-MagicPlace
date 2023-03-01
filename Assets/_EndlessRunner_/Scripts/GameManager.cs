@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    public void StartGame() 
     {
         SetGameState(GameState.inGame);
     }
@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
         }
         else if (newGameState == GameState.inGame)
         {
+            LevelManager.Instance.RemoveAllLevelBlocks();
+            LevelManager.Instance.GenerateInitialBlocks();
             PlayerController.Instance.StartGame();
         }
         else if (newGameState == GameState.gameOver)
