@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour
         if ((Input.GetButtonDown("Jump")) && IsGrounded())
         {
             _rigidbody2D.AddForce(Vector2.up * _jumForce, ForceMode2D.Impulse);
+            GetComponent<AudioSource>().Play();
         }
 
         /*if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && IsGrounded())
@@ -109,6 +110,7 @@ public class PlayerController : MonoBehaviour
                 _manaPoints -= SuperJump_Cost;
                 jumpForceFactor *= SuperJump_Force;
                 _rigidbody2D.AddForce(Vector2.up * jumpForceFactor, ForceMode2D.Impulse);
+                GetComponent<AudioSource>().Play();
             }
         }
 
@@ -148,6 +150,11 @@ public class PlayerController : MonoBehaviour
         if (_healthPoints >= Max_Health)
         {
             _healthPoints = Max_Health;
+        }
+
+        if (_healthPoints <= 0)
+        {
+            Death();
         }
     }
     

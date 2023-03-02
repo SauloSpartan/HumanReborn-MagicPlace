@@ -50,6 +50,7 @@ public class Collectable : MonoBehaviour
                 break;
             case CollectableType.coin:
                 GameManager.Instance.CollectObject(this);
+                GetComponent<AudioSource>().Play();
                 break;
         }
     }
