@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEditor.UI;
 
 // On Main Canvas, shows or hides the main inventory.
 public class TShowInventory : MonoBehaviour
