@@ -1368,8 +1368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpForce: 7
-  _maxJumps: 2
-  _maxJumpDistance: 0.2
+  _maxJumps: 1
 --- !u!114 &1927314179
 MonoBehaviour:
   m_ObjectHideFlags: 0

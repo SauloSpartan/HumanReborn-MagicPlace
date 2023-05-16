@@ -1,6 +1,5 @@
 using UnityEngine;
 
-// On "Item", gameobject that adds items on your inventory.
 public class TPickItem : MonoBehaviour
 {
     [SerializeField] private TInventoryManager _inventoryManager;
@@ -16,6 +15,10 @@ public class TPickItem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        _inventoryManager.AddItem(_items[_itemID]);
+        if (other.tag == "Player")
+        {
+            _inventoryManager.AddItem(_items[_itemID]);
+            Destroy(gameObject);
+        }
     }
 }
