@@ -14,7 +14,7 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private float _jumpForce = 2;
     [SerializeField] private int _maxJumps;
     private int _initialJumps;
-    private bool _isGrounded;
+    private bool _isJumping;
 
     // Attack variables
     private bool _clickButton;
@@ -38,7 +38,7 @@ public class PlayerStateMachine : MonoBehaviour
     public float JumpForce { get { return _jumpForce; } }
     public int MaxJumps { get { return _maxJumps; } set { _maxJumps = value; } }
     public int InitialJumps { get { return _initialJumps; } }
-    public bool IsGrounded { get { return _isGrounded; } }
+    public bool IsJumping { get { return _isJumping; } set { _isJumping = value; } }
     public bool ClickButton { get { return _clickButton; } }
     public Animator Animator { get { return _animator; } set { _animator = value; } }
     public float AnimationLength { get { return _animationLength; } set { _animationLength = value; } }
@@ -97,7 +97,11 @@ public class PlayerStateMachine : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             _maxJumps = _initialJumps;
-            _currentState = _states.Idle();
+            if (_isJumping == true)
+            {
+                _currentState = _states.Idle();
+                _isJumping = false;
+            }
         }
     }
 }

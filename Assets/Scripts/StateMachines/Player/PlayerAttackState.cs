@@ -10,6 +10,7 @@ public class PlayerAttackState : PlayerBaseState
     public override void EnterState()
     {
         _ctx.Animator.Play("Attack");
+        _ctx.IsJumping = false;
     }
 
     public override void UpdateState()
