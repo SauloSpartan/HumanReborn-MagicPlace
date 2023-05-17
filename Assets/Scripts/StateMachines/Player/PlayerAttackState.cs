@@ -11,17 +11,20 @@ public class PlayerAttackState : PlayerBaseState
     {
         _ctx.Animator.Play("Attack");
         _ctx.IsJumping = false;
+
+        /*AnimatorClipInfo[] currentClipInfo;
+        currentClipInfo = _ctx.Animator.GetCurrentAnimatorClipInfo(0);
+        _ctx.AnimationLength = currentClipInfo[0].clip.length;*/
+        _ctx.AnimationLength = 0.80f;
     }
 
     public override void UpdateState()
     {
         MoveAndJump();
-
-        AnimatorClipInfo[] currentClipInfo;
-        currentClipInfo = _ctx.Animator.GetCurrentAnimatorClipInfo(0);
-        float animationLength = currentClipInfo[0].clip.length;
-        Debug.Log(animationLength);
-
+        if (_ctx.AnimationLength > 0)
+        {
+            _ctx.AnimationLength -= Time.deltaTime;
+        }
         CheckSwitchState();
     }
 
@@ -32,7 +35,10 @@ public class PlayerAttackState : PlayerBaseState
 
     public override void CheckSwitchState()
     {
-
+        if (_ctx.AnimationLength <= 0)
+        {
+            SwitchState(_factory.Idle());
+        }
     }
 
     private void MoveAndJump()
