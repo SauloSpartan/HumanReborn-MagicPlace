@@ -22,7 +22,8 @@ public class TTreeGenerator : MonoBehaviour
 
             if (canSpawn <= 1)
             {
-                Instantiate(_trees[0], _treePosition[i]);
+                int randomTree = Random.Range(0, 3);
+                Instantiate(_trees[randomTree], _treePosition[i]);
             }
         }
     }

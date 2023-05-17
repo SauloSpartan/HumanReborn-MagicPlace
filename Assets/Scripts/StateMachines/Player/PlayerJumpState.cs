@@ -45,10 +45,7 @@ public class PlayerJumpState : PlayerBaseState
     {
         if (Input.GetKeyDown(KeyCode.Space) && _ctx.MaxJumps > 0)
         {
-            _ctx.Animator.Play("Jump");
-            _ctx.RigidBody.velocity = new Vector2(_ctx.RigidBody.velocity.x, 0);
-            _ctx.RigidBody.AddForce(Vector2.up * _ctx.JumpForce, ForceMode2D.Impulse);
-            _ctx.MaxJumps -= 1;
+            SwitchState(_factory.Jump());
         }
     }
 }

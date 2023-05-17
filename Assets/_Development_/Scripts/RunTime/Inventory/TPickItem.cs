@@ -9,6 +9,7 @@ public class TPickItem : MonoBehaviour
 
     private void Awake()
     {
+        _inventoryManager = GameObject.Find("InventoryManager").GetComponent<TInventoryManager>();
         _image = GetComponent<SpriteRenderer>();
         _image.sprite = _items[_itemID].ItemSprite;
     }

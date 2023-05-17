@@ -1,4 +1,3 @@
-using TMPro.EditorUtilities;
 using UnityEngine;
 
 // This is the main state machine, controls the logic and has the main variables and functions
@@ -18,6 +17,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     // Attack variables
     private bool _clickButton;
+    [SerializeField] private BoxCollider2D _handCollider;
 
     // Animation variables
     private Animator _animator;
@@ -103,5 +103,15 @@ public class PlayerStateMachine : MonoBehaviour
                 _isJumping = false;
             }
         }
+    }
+
+    private void IsAttacking()
+    {
+        _handCollider.enabled = true;
+    }
+
+    private void NotAttacking()
+    {
+        _handCollider.enabled = false;
     }
 }
