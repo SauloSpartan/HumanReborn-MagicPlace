@@ -18,12 +18,6 @@ public class PlayerWalkState : PlayerBaseState
     public override void UpdateState()
     {   
         _ctx.RigidBody.velocity = new Vector2(_ctx.MoveInX * _ctx.Speed, _ctx.RigidBody.velocity.y);
-
-        if (_ctx.IsGrounded())
-        {
-            _ctx.MaxJumps = _ctx.InitialJumps;
-        }
-
         CheckSwitchState();
     }
 

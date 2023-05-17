@@ -16,11 +16,6 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void UpdateState()
     {
-        if (_ctx.IsGrounded())
-        {
-            _ctx.MaxJumps = _ctx.InitialJumps;
-        }
-
         CheckSwitchState();
     }
 

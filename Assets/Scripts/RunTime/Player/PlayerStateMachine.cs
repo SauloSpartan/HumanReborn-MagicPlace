@@ -1,3 +1,4 @@
+using TMPro.EditorUtilities;
 using UnityEngine;
 
 // This is the main state machine, controls the logic and has the main variables and functions
@@ -13,6 +14,7 @@ public class PlayerStateMachine : MonoBehaviour
     [SerializeField] private float _jumpForce = 2;
     [SerializeField] private int _maxJumps;
     private int _initialJumps;
+    private bool _isGrounded;
 
     // Attack variables
     private bool _clickButton;
@@ -20,6 +22,7 @@ public class PlayerStateMachine : MonoBehaviour
     // Animation variables
     private Animator _animator;
     private SpriteRenderer _sprite;
+    private float _animationLength;
 
     // State variables
     private PlayerBaseState _currentState;
@@ -28,15 +31,17 @@ public class PlayerStateMachine : MonoBehaviour
     // Getters and Setters
     /// <value> Reference to BaseState Script. </value>
     public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; } }
-    public Rigidbody2D RigidBody { get { return _rigidBody; } set { _rigidBody = value; }}
-    public float Speed { get { return _speed; } } 
+    public Rigidbody2D RigidBody { get { return _rigidBody; } set { _rigidBody = value; } }
+    public float Speed { get { return _speed; } }
     public float MoveInX { get { return _moveInX; } set { _moveInX = value; } }
     public bool JumpKey { get { return _jumpKey; } set { _jumpKey = value; } }
     public float JumpForce { get { return _jumpForce; } }
-    public int MaxJumps { get { return _maxJumps; }  set { _maxJumps = value; } }
+    public int MaxJumps { get { return _maxJumps; } set { _maxJumps = value; } }
     public int InitialJumps { get { return _initialJumps; } }
+    public bool IsGrounded { get { return _isGrounded; } }
     public bool ClickButton { get { return _clickButton; } }
     public Animator Animator { get { return _animator; } set { _animator = value; } }
+    public float AnimationLength { get { return _animationLength; } set { _animationLength = value; } }
 
     void Awake()
     {
@@ -87,9 +92,12 @@ public class PlayerStateMachine : MonoBehaviour
         _clickButton = Input.GetMouseButton(0);
     }
 
-    public bool IsGrounded()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        LayerMask _groundLayer = LayerMask.GetMask("Ground");
-        return Physics2D.OverlapCircle(transform.position, 0.2f, _groundLayer);
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            _maxJumps = _initialJumps;
+            _currentState = _states.Idle();
+        }
     }
 }

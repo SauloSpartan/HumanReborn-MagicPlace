@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAttackState : PlayerBaseState
@@ -17,6 +15,11 @@ public class PlayerAttackState : PlayerBaseState
     public override void UpdateState()
     {
         MoveAndJump();
+
+        AnimatorClipInfo[] currentClipInfo;
+        currentClipInfo = _ctx.Animator.GetCurrentAnimatorClipInfo(0);
+        float animationLength = currentClipInfo[0].clip.length;
+        Debug.Log(animationLength);
 
         CheckSwitchState();
     }
