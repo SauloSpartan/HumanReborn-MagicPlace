@@ -14,13 +14,20 @@ public class TAnimator : MonoBehaviour
     void Update()
     {
         float moveX = Input.GetAxis("Horizontal");
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            _animator.Play("Attack");
+            return;
+        }
+
         if (moveX != 0)
         {
             _animator.Play("Walk");
         }
-        else
+        else if (Input.GetKeyDown(KeyCode.Space))
         {
-            _animator.Play("Idle");
+            _animator.Play("Jump");
         }
     }
 }

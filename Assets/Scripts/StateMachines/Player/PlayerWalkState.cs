@@ -19,6 +19,11 @@ public class PlayerWalkState : PlayerBaseState
     {   
         _ctx.RigidBody.velocity = new Vector2(_ctx.MoveInX * _ctx.Speed, _ctx.RigidBody.velocity.y);
 
+        if (_ctx.IsGrounded())
+        {
+            _ctx.MaxJumps = _ctx.InitialJumps;
+        }
+
         CheckSwitchState();
     }
 
@@ -33,9 +38,13 @@ public class PlayerWalkState : PlayerBaseState
         {
             SwitchState(_factory.Idle());
         }
-        else if (_ctx.JumpKey == true && _ctx.IsGrounded() == true)
+        else if (_ctx.JumpKey == true && _ctx.MaxJumps > 0)
         {
             SwitchState(_factory.Jump());
+        }
+        else if (_ctx.ClickButton == true)
+        {
+            SwitchState(_factory.Attack());
         }
     }
 }

@@ -5,14 +5,17 @@ public class PlayerStateMachine : MonoBehaviour
 {
     // Movement variables
     private Rigidbody2D _rigidBody;
-    [SerializeField] private BoxCollider2D _boxCollider;
     [SerializeField] private float _speed = 5;
     private float _moveInX;
 
     // Jump variables
     private bool _jumpKey;
     [SerializeField] private float _jumpForce = 2;
-    [SerializeField] private float _groundDistance;
+    [SerializeField] private int _maxJumps;
+    private int _initialJumps;
+
+    // Attack variables
+    private bool _clickButton;
 
     // Animation variables
     private Animator _animator;
@@ -30,14 +33,18 @@ public class PlayerStateMachine : MonoBehaviour
     public float MoveInX { get { return _moveInX; } set { _moveInX = value; } }
     public bool JumpKey { get { return _jumpKey; } set { _jumpKey = value; } }
     public float JumpForce { get { return _jumpForce; } }
+    public int MaxJumps { get { return _maxJumps; }  set { _maxJumps = value; } }
+    public int InitialJumps { get { return _initialJumps; } }
+    public bool ClickButton { get { return _clickButton; } }
     public Animator Animator { get { return _animator; } set { _animator = value; } }
 
     void Awake()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
-        _boxCollider = GetComponent<BoxCollider2D>();
         _animator = GetComponent<Animator>();
         _sprite = GetComponent<SpriteRenderer>();
+
+        _initialJumps = _maxJumps;
     }
 
     void Start()
@@ -75,19 +82,14 @@ public class PlayerStateMachine : MonoBehaviour
 
         //Jump inputs
         _jumpKey = Input.GetKeyDown(KeyCode.Space);
+
+        //Click inputs
+        _clickButton = Input.GetMouseButton(0);
     }
 
     public bool IsGrounded()
     {
         LayerMask _groundLayer = LayerMask.GetMask("Ground");
-        float distanceToGround = _boxCollider.bounds.extents.y;
-        return Physics2D.Raycast(transform.position, Vector2.down, distanceToGround + _groundDistance, _groundLayer);
-    }
-
-    private void OnDrawGizmos()
-    {
-        float distanceToGround = _boxCollider.bounds.extents.y;
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(transform.position, Vector2.down * (distanceToGround + _groundDistance));
+        return Physics2D.OverlapCircle(transform.position, 0.2f, _groundLayer);
     }
 }

@@ -16,6 +16,11 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void UpdateState()
     {
+        if (_ctx.IsGrounded())
+        {
+            _ctx.MaxJumps = _ctx.InitialJumps;
+        }
+
         CheckSwitchState();
     }
 
@@ -30,9 +35,13 @@ public class PlayerIdleState : PlayerBaseState
         {
             SwitchState(_factory.Walk());
         }
-        else if (_ctx.JumpKey == true && _ctx.IsGrounded() == true)
+        else if (_ctx.JumpKey == true && _ctx.MaxJumps > 0)
         {
             SwitchState(_factory.Jump());
+        }
+        else if (_ctx.ClickButton == true)
+        {
+            SwitchState(_factory.Attack());
         }
     }
 }
