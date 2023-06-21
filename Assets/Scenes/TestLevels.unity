@@ -22421,7 +22421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &470441274
 Animator:
   serializedVersion: 3
@@ -22609,10 +22609,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c9f3b99b19803f4d9865e178647fee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _force: 8.5
-  _boxCollider: {fileID: 470441279}
-  _maxJumps: 1
-  _groundDistance: 0.2
+  _jumpForce: 10
+  _maxJumps: 2
+  _timer: 0.5
 --- !u!114 &470441282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23938,7 +23937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &796035916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23951,10 +23950,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0cf1b2fc16d1494486a1f7795dbfd9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boxCollider: {fileID: 796035918}
   _speed: 3
   _jumpForce: 8.5
-  _groundDistance: -0.05
+  _maxJumps: 0
+  _handCollider: {fileID: 0}
 --- !u!50 &796035917
 Rigidbody2D:
   serializedVersion: 4

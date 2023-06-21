@@ -8,26 +8,35 @@ public class TJump : MonoBehaviour
     [SerializeField] private int _maxJumps;
     private int _initialJumps;
     private LayerMask _groundLayer;
+    [SerializeField] private float _timer;
+    private float _initialTime;
 
     void Start()
     {
         _rigidBody = GetComponent<Rigidbody2D>();
         _initialJumps = _maxJumps;
         _groundLayer = LayerMask.GetMask("Ground");
+        _initialTime = _timer;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && _maxJumps > 0)
+        if (_maxJumps > 0 && Input.GetKeyDown(KeyCode.Space))
         {
             _rigidBody.velocity = new Vector2(_rigidBody.velocity.x, 0);
             _rigidBody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
             _maxJumps -= 1;
         }
 
-        if (IsGrounded())
+        if (_timer <= 0 && IsGrounded())
         {
             _maxJumps = _initialJumps;
+            _timer = _initialTime;
+        }
+
+        if (!IsGrounded())
+        {
+            _timer -= Time.deltaTime;
         }
     }
 
