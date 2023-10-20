@@ -796,7 +796,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1376400012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1420,7 +1420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2077949707
 Transform:
   m_ObjectHideFlags: 0
@@ -1444,12 +1444,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2077949706}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cef10d371ce8e50448b68e3f9d954274, type: 3}
+  m_Script: {fileID: 11500000, guid: be1c8e91a543a2d4eb47d065a6b257b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _raceData: {fileID: 0}
-  _character: {fileID: 0}
-  _material: {fileID: 0}
+  _raceData: {fileID: 11400000, guid: 17640a854dbe40b409aadb5dd4527d32, type: 2}
+  _skin_material: {fileID: 2100000, guid: ea6ab714e067bf645a0485ac8dbd7626, type: 2}
+  _hair_material: {fileID: 2100000, guid: e26a93dcd6e194a4ab1cf6a214e00604, type: 2}
+  _eye_material: {fileID: 0}
+  _default_material: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
 --- !u!1 &2081863057
 GameObject:
   m_ObjectHideFlags: 0

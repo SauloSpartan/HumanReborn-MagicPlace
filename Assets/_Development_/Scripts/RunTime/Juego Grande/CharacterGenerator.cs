@@ -12,9 +12,9 @@ public class CharacterGenerator : MonoBehaviour
     void Start()
     {
         _colorRange = Random.Range(0, _raceData._skinPaletteData.Length);
-        _character = this.gameObject;
+        _character = gameObject;
         _material = _character.GetComponent<SpriteRenderer>().material;
-        _material.SetTexture("_MainTex", _raceData._bodyShape);
+        _material.SetTexture("_MainTex", _raceData._bodyShape.texture);
         _material.SetColor("_Skin", _raceData._skinPaletteData[_colorRange]._skin);
         _material.SetColor("_SkinLightShadow", _raceData._skinPaletteData[_colorRange]._skin_light_shadow);
         _material.SetColor("_SkinNormalShadow", _raceData._skinPaletteData[_colorRange]._skin_normal_shadow);

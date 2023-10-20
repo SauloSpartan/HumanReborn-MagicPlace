@@ -13,7 +13,60 @@ MonoBehaviour:
   m_Name: Goblin
   m_EditorClassIdentifier: 
   _race: 1
-  _bodyShape: {fileID: 2800000, guid: c9ee441bdc7a0524ba46c2b9184f82b0, type: 3}
+  _bodyShape: {fileID: 21300000, guid: c9ee441bdc7a0524ba46c2b9184f82b0, type: 3}
   _skinPaletteData:
+  - {fileID: 11400000, guid: b60e095244b12ee49a3f2d352448943e, type: 2}
   - {fileID: 11400000, guid: 1e7ae9e704d9cad4aa610b6ed56d71f6, type: 2}
   - {fileID: 11400000, guid: 6aa07eb2a9c31f448a4210dc8517d994, type: 2}
+  - {fileID: 11400000, guid: 5e061fc3fbaa2264ea9c427ef6d2a5f7, type: 2}
+  - {fileID: 11400000, guid: f0a1f9c0d91f03d4daf995d8b0bcb040, type: 2}
+  - {fileID: 11400000, guid: 375452ff5fec44a4ab7bee000cf8565c, type: 2}
+  - {fileID: 11400000, guid: e60344dcd90997c439bc59a092305145, type: 2}
+  _earShape:
+  - {fileID: -8951887323758135152, guid: 8e4b14f5ac2e6c24cae91cee436e2cf0, type: 3}
+  - {fileID: 2705155228050949472, guid: 8e4b14f5ac2e6c24cae91cee436e2cf0, type: 3}
+  - {fileID: 7076394092770856957, guid: 8e4b14f5ac2e6c24cae91cee436e2cf0, type: 3}
+  - {fileID: -5803545351130240412, guid: 8e4b14f5ac2e6c24cae91cee436e2cf0, type: 3}
+  - {fileID: 6808287609078670090, guid: 8e4b14f5ac2e6c24cae91cee436e2cf0, type: 3}
+  - {fileID: -6923622509452155570, guid: 8e4b14f5ac2e6c24cae91cee436e2cf0, type: 3}
+  - {fileID: -7995768873459237640, guid: 8e4b14f5ac2e6c24cae91cee436e2cf0, type: 3}
+  _eyeShape:
+  - {fileID: 6207601403813661979, guid: 4f5e9497fd0475f4f9b331a32daef5ca, type: 3}
+  - {fileID: -1127444398333788728, guid: 4f5e9497fd0475f4f9b331a32daef5ca, type: 3}
+  - {fileID: -7207257416697332514, guid: 4f5e9497fd0475f4f9b331a32daef5ca, type: 3}
+  - {fileID: 1152305212976972405, guid: 4f5e9497fd0475f4f9b331a32daef5ca, type: 3}
+  - {fileID: -5147636873518699769, guid: 4f5e9497fd0475f4f9b331a32daef5ca, type: 3}
+  - {fileID: -3617229301867342824, guid: 4f5e9497fd0475f4f9b331a32daef5ca, type: 3}
+  - {fileID: 3610966906756554864, guid: 4f5e9497fd0475f4f9b331a32daef5ca, type: 3}
+  _eyebrowShape:
+  - {fileID: 4538031188155463033, guid: cd058f71a7c8e2b48b6ed03ddb59226d, type: 3}
+  - {fileID: 2817559144087369605, guid: cd058f71a7c8e2b48b6ed03ddb59226d, type: 3}
+  - {fileID: 8954013917949904768, guid: cd058f71a7c8e2b48b6ed03ddb59226d, type: 3}
+  - {fileID: -5797071295035412630, guid: cd058f71a7c8e2b48b6ed03ddb59226d, type: 3}
+  - {fileID: 4837372904812001927, guid: cd058f71a7c8e2b48b6ed03ddb59226d, type: 3}
+  - {fileID: 9019150445218611231, guid: cd058f71a7c8e2b48b6ed03ddb59226d, type: 3}
+  - {fileID: 586593176283299814, guid: cd058f71a7c8e2b48b6ed03ddb59226d, type: 3}
+  _mouthShape:
+  - {fileID: 5476926162398909744, guid: 2b2edfa22825b5f469235c98e4eecc46, type: 3}
+  - {fileID: 1638565675761267093, guid: 2b2edfa22825b5f469235c98e4eecc46, type: 3}
+  - {fileID: -6882293379259931120, guid: 2b2edfa22825b5f469235c98e4eecc46, type: 3}
+  - {fileID: 8990015730927958683, guid: 2b2edfa22825b5f469235c98e4eecc46, type: 3}
+  - {fileID: 713075664458394606, guid: 2b2edfa22825b5f469235c98e4eecc46, type: 3}
+  - {fileID: 4858756833194432272, guid: 2b2edfa22825b5f469235c98e4eecc46, type: 3}
+  - {fileID: -205243477255624551, guid: 2b2edfa22825b5f469235c98e4eecc46, type: 3}
+  _backHair:
+  - {fileID: 5990887114262965404, guid: 2ff863e323abe4840ae634def3e11f0d, type: 3}
+  - {fileID: 1448269655519385725, guid: 2ff863e323abe4840ae634def3e11f0d, type: 3}
+  - {fileID: -845828952098008350, guid: 2ff863e323abe4840ae634def3e11f0d, type: 3}
+  - {fileID: -1876284478925361134, guid: 2ff863e323abe4840ae634def3e11f0d, type: 3}
+  - {fileID: -836575842771439106, guid: 2ff863e323abe4840ae634def3e11f0d, type: 3}
+  - {fileID: -3803245595317080497, guid: 2ff863e323abe4840ae634def3e11f0d, type: 3}
+  - {fileID: -2311188449742025403, guid: 2ff863e323abe4840ae634def3e11f0d, type: 3}
+  _frontHair:
+  - {fileID: -8896036667713950165, guid: 0d7d25e2ec0b672459beda98394b6885, type: 3}
+  - {fileID: 1883153157111483492, guid: 0d7d25e2ec0b672459beda98394b6885, type: 3}
+  - {fileID: -7377072896121041606, guid: 0d7d25e2ec0b672459beda98394b6885, type: 3}
+  - {fileID: 4966191329849743344, guid: 0d7d25e2ec0b672459beda98394b6885, type: 3}
+  - {fileID: -5113637575321515654, guid: 0d7d25e2ec0b672459beda98394b6885, type: 3}
+  - {fileID: 5027504852256337940, guid: 0d7d25e2ec0b672459beda98394b6885, type: 3}
+  - {fileID: -8588510125327936807, guid: 0d7d25e2ec0b672459beda98394b6885, type: 3}

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bfbe4001f4eb974791abd02546d4f3d, type: 3}
+  m_Name: PinkSkinPalette
+  m_EditorClassIdentifier: 
+  _skin: {r: 0.97647065, g: 0.78823537, b: 0.9725491, a: 0}
+  _skin_light_shadow: {r: 0.82745105, g: 0.5764706, b: 0.8313726, a: 0}
+  _skin_normal_shadow: {r: 0.67058825, g: 0.32941177, b: 0.57254905, a: 0}
+  _skin_dark_shadow: {r: 0.44705886, g: 0.2901961, b: 0.454902, a: 0}
+  _skin_black_shadow: {r: 0.32941177, g: 0.14901961, b: 0.32941177, a: 0}

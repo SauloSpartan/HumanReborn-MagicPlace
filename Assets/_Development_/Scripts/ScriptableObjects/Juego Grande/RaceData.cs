@@ -4,8 +4,14 @@ using UnityEngine;
 public class RaceData : ScriptableObject
 {
     public Race _race;
-    public Texture2D _bodyShape;
+    public Sprite _bodyShape;
     public SkinPaletteData[] _skinPaletteData;
+    public Sprite[] _earShape;
+    public Sprite[] _eyeShape;
+    public Sprite[] _eyebrowShape;
+    public Sprite[] _mouthShape;
+    public Sprite[] _backHair;
+    public Sprite[] _frontHair;
 }
 
 public enum Race
