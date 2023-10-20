@@ -9,21 +9,39 @@ public class CharacterCreator : MonoBehaviour
     [SerializeField] private Material _hair_material;
     [SerializeField] private Material _eye_material;
     [SerializeField] private Material _default_material;
+    private GameObject _characterBody;
     private int _randomizer;
 
     void Start()
     {
         _eye_material = _hair_material;
 
+        /*CharacterGeneration();
+        SkinColorAssing();
+        HairColorAssing();
+        EyeColorAssing();*/
+    }
+
+    public void CreateGameCharacter()
+    {
         CharacterGeneration();
         SkinColorAssing();
         HairColorAssing();
         EyeColorAssing();
     }
 
+    public void DestroyCharacter()
+    {
+        if (_characterBody != null)
+        {
+            Destroy(_characterBody);
+        }
+    }
+
     private void CharacterGeneration()
     {
-        GameObject _characterBody = new GameObject("Body", typeof(SpriteRenderer));
+        _characterBody = new GameObject("Body", typeof(SpriteRenderer));
+        Instantiate(_characterBody);
         _characterBody.GetComponent<SpriteRenderer>().sprite = _raceData._bodyShape;
         _characterBody.GetComponent<SpriteRenderer>().material = _skin_material;
         _skin_material = _characterBody.GetComponent<SpriteRenderer>().material;
